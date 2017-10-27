@@ -1,81 +1,67 @@
 <!DOCTYPE html>
 <html>
-    <head>
-        <meta charset="utf-8">
-        <meta name="description" content="">
-        <meta name="viewport" content="width=device-width, initial-scale=1">
-        <title>Trav.l - Level up your travelling experience</title>
-        <link rel="stylesheet" href="css/bootstrap.min.css">
-        <link rel="stylesheet" href="css/flexslider.css">
-        <link rel="stylesheet" href="css/jquery.fancybox.css">
-        <link rel="stylesheet" href="css/main.css">
-        <link rel="stylesheet" href="css/responsive.css">
-        <link rel="stylesheet" href="css/font-icon.css">
-        <link rel="stylesheet" href="css/animate.min.css">
-        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css">
-        <style>
-            #map{
-                height: 400px;
-                width: 100%;
-            }
-        </style>
-    </head>
-  <body>
-    <h3>My Google Maps Demo</h3>
-    <div id="map"></div>
-    <script>
-      function initMap() {
-        var uluru = {lat: -7.796276, lng: 110.369179};
-        var map = new google.maps.Map(document.getElementById('map'), {
-          zoom: 14,
-          center: uluru
-        });
-        var marker = new google.maps.Marker({
-          position: uluru,
-          map: map
-        });
-      }
-    </script>
-    <script async defer
-    src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDv8qdI5vWcs04MZvsToi61dfP1OTDOOgg&callback=initMap">
-    </script>
+  <head>
+    <meta charset="utf-8">
+    <meta name="description" content="">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Trav.l - Level up your travelling experience</title>
+    <link rel="stylesheet" href="css/bootstrap.min.css">
+    <link rel="stylesheet" href="css/flexslider.css">
+    <link rel="stylesheet" href="css/jquery.fancybox.css">
+    <link rel="stylesheet" href="css/main.css">
+    <link rel="stylesheet" href="css/responsive.css">
+    <link rel="stylesheet" href="css/font-icon.css">
+    <link rel="stylesheet" href="css/animate.min.css">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css">
+  </head>
+  <body onload="getVal(); loadMap();">
+    <h3 class="logo">TRAV.L</h3>
+    <div class="container-fluid">
+      <div class="row">
+        <div class="col-sm-6">
+            <p>This is a content...</p>
+        </div>
+        <div class="col-sm-6">
+            <div id="map"></div>
+        </div>
+      </div>
+    </div>
   </body>
   <!-- Footer section -->
-<footer class="footer">
-        <div class="footer-top section">
-          <div class="container">
-            <div class="row">
-              <div class="footer-col col-md-6">
-                <h5>Our Office Location</h5>
-                <p>Collins Street West Victoria 8007 Australia.<br>
-                  1800 1234 56789 / 98532100987<br>
-                  support@lexis.com</p>
-                <p>Copyright © 2015 Lexis Inc. All Rights Reserved. Made with <i class="fa fa-heart pulse"></i> by <a href="http://www.designstub.com/">Designstub</a></p>
-              </div>
-              <div class="footer-col col-md-3">
-                <h5>Share with Love</h5>
-                <ul class="footer-share">
-                  <li><a href="https://www.facebook.com/"><i class="fa fa-facebook"></i></a></li>
-                  <li><a href="#"><i class="fa fa-twitter"></i></a></li>
-                  <li><a href="#"><i class="fa fa-linkedin"></i></a></li>
-                  <li><a href="#"><i class="fa fa-google-plus"></i></a></li>
-                </ul>
-              </div>
-            </div>
+  <footer class="footer">
+    <div class="footer-top section">
+      <div class="container">
+        <div class="row">
+          <div class="footer-col col-md-6">
+            <h5>Our Office Location</h5>
+            <p>Collins Street West Victoria 8007 Australia.<br>
+               1800 1234 56789 / 98532100987<br>
+               support@lexis.com</p>
+            <p>Copyright © 2015 Lexis Inc. All Rights Reserved. Made with <i class="fa fa-heart pulse"></i> by <a href="http://www.designstub.com/">Designstub</a></p>
+          </div>
+          <div class="footer-col col-md-3">
+            <h5>Share with Love</h5>
+            <ul class="footer-share">
+              <li><a href="https://www.facebook.com/"><i class="fa fa-facebook"></i></a></li>
+              <li><a href="#"><i class="fa fa-twitter"></i></a></li>
+              <li><a href="#"><i class="fa fa-linkedin"></i></a></li>
+              <li><a href="#"><i class="fa fa-google-plus"></i></a></li>
+            </ul>
           </div>
         </div>
-        <!-- footer top --> 
-        
-      </footer>
-      <!-- Footer section --> 
-      <!-- JS FILES --> 
-      <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script> 
-      <script src="js/bootstrap.min.js"></script> 
-      <script src="js/jquery.flexslider-min.js"></script> 
-      <script src="js/jquery.fancybox.pack.js"></script> 
-      <script src="js/retina.min.js"></script> 
-      <script src="js/modernizr.js"></script> 
-      <script src="js/main.js"></script> 
-      <script type="text/javascript" src="js/jquery.contact.js"></script>
-      <script src="js/dropdown.js"></script>
+      </div>
+    </div>     
+  </footer>
+  <!-- Footer section --> 
+  <!-- JS FILES --> 
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script> 
+  <script src="js/bootstrap.min.js"></script> 
+  <script src="js/jquery.flexslider-min.js"></script> 
+  <script src="js/jquery.fancybox.pack.js"></script> 
+  <script src="js/retina.min.js"></script> 
+  <script src="js/modernizr.js"></script> 
+  <script src="js/main.js"></script> 
+  <script type="text/javascript" src="js/jquery.contact.js"></script>
+  <script src="js/map.js"></script>
+  <script src = "https://maps.googleapis.com/maps/api/js?key=AIzaSyDv8qdI5vWcs04MZvsToi61dfP1OTDOOgg"></script>
 </html>
