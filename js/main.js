@@ -43,15 +43,12 @@ $(document).ready(function() {
 	  return false;
 	});
 
-	//Login modal
-	//$('[data-toggle="modal"]').modal();﻿
-
 	// Mobile Navigation
 	$('.nav-toggle').on('click', function() {
 		$(this).toggleClass('close-nav');
 		nav.toggleClass('open');
 		return false;
-	});
+	});	
 	nav.find('a').on('click', function() {
 		$('.nav-toggle').toggleClass('close-nav');
 		nav.toggleClass('open');
