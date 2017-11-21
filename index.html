@@ -56,35 +56,75 @@
         </div>
         <!-- <a href="map.html"><button class="btn btn-large">Search!</button></a> -->
       </div>
-      <!-- banner text --> 
+      <!-- banner text -->
     </div>
   </div>
 </section>
-<!-- header section --> 
+<!-- header section -->
 <!--login modal-->
 <div id="loginModal" class="modal fade" tabindex="-1" role="dialog">
   <div class="modal-dialog">
     <div class="modal-content">
       <div class="modal-header">
         <button class="close" data-dismiss="modal">&times;</button>
-        <h4 class="modal-title">Login</h4>
+        <h4 class="modal-title">Login/Sign Up</h4>
       </div>
       <div class="modal-body">
-        <form>
-          <div class="form-group">
-            <label for="inputUsername">Username</label>
-            <input class="form-control" placeholder="Username" type="text" id="inputUsername">
+        <div class="row">
+          <div class="col-md-12">
+          <ul class="nav nav-tabs">
+            <li class="active"><a href="#Login" data-toggle="tab">Login</a></li>
+            <li><a href="#Register" data-toggle="tab">Sign Up</a></li>
+          </ul>
+          <div class="tab-content">
+            <div class="tab-pane active" id="Login">
+              <form>
+                <div class="form-group">
+                  <label for="inputEmail">Email</label>
+                  <input class="form-control" placeholder="Email" type="email" id="logininputEmail">
+                </div>
+                <div class="form-group">
+                  <label for="inputPassword">Password</label>
+                  <input class="form-control" placeholder="Password" type="password" id="logininputPassword">
+                </div>
+                <div>
+                  <button id="btn_login" class="btn btn-primary">Login</button>
+                </div>
+                </div>
+              </form>
+            <div class="tab-pane" id="Register">
+              <form>
+                <div class="form-group">
+                  <label for="inputEmail">Email</label>
+                  <input class="form-control" placeholder="Email" type="text" id="inputUsername">
+                </div>
+                <div class="form-group">
+                  <label for="inputPassword">Password</label>
+                  <input class="form-control" placeholder="Password" type="password" id="inputPassword">
+                </div>
+                <div class="form-group">
+                  <label for="inputName">Name</label>
+                  <input class="form-control" placeholder="Name" type="text" id="inputName">
+                </div>
+                <div class="form-group">
+                  <label for="inputNo">Phone Number</label>
+                  <input class="form-control" placeholder="Phone Number" type="text" id="inputNo">
+                </div>
+                <div>
+                  <button id="btn_signup" class="btn btn-primary">Signup</button>
+                </div>
+              </div>
+              </form>
+            </div>
           </div>
-          <div class="form-group">
-            <label for="inputPassword">Password</label>
-            <input class="form-control" placeholder="Password" type="password" id="inputPassword">
-          </div>
-          </div>
-        </form>
+
+        </div>
       </div>
-      <div class="modal-footer">
-        <button class="btn btn-primary">Login</button>
+
+
+
       </div>
+
     </div>
   </div>
 <!-- intro section -->
@@ -96,7 +136,7 @@
     </div>
   </div>
 </section>
-<!-- intro section --> 
+<!-- intro section -->
 <!-- services section -->
 <section id="services" class="services service-section">
   <div class="container">
@@ -140,7 +180,7 @@
     </div>
   </div>
 </section>
-<!-- services section --> 
+<!-- services section -->
 
 <!-- our team section -->
 <section id="teams" class="section teams">
@@ -213,7 +253,7 @@
     </div>
   </div>
 </section>
-<!-- our team section --> 
+<!-- our team section -->
 <!-- Footer section -->
 <footer class="footer">
   <div class="footer-top section">
@@ -238,18 +278,19 @@
       </div>
     </div>
   </div>
-  <!-- footer top --> 
-  
+  <!-- footer top -->
+
 </footer>
-<!-- Footer section --> 
-<!-- JS FILES --> 
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script> 
-<script src="js/bootstrap.min.js"></script> 
-<script src="js/jquery.flexslider-min.js"></script> 
-<script src="js/jquery.fancybox.pack.js"></script> 
-<script src="js/retina.min.js"></script> 
-<script src="js/modernizr.js"></script> 
-<script src="js/main.js"></script> 
+<!-- Footer section -->
+<!-- JS FILES -->
+<script src="https://www.gstatic.com/firebasejs/4.6.2/firebase.js"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+<script src="js/bootstrap.min.js"></script>
+<script src="js/jquery.flexslider-min.js"></script>
+<script src="js/jquery.fancybox.pack.js"></script>
+<script src="js/retina.min.js"></script>
+<script src="js/modernizr.js"></script>
+<script src="js/main.js"></script>
 <script type="text/javascript" src="js/jquery.contact.js"></script>
 <script src="js/dropdown.js"></script>
 </body>
