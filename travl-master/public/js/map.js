@@ -19,9 +19,19 @@ let city ={
 };
 
 var mark1 ={
-    lat: -7.8030745,
-    lng: 110.357382
+    lat: -7.801575,
+    lng: 110.365594
 }
+
+var mark2 ={
+    lat: -7.797068,
+    lng: 110.370529
+}
+
+var map;
+var infowindow;
+var _ul = document.getElementById("list");
+var _content = "";
 
 function getVal(){
     var getLoc = GET["cityVal"];
@@ -45,12 +55,40 @@ function loadMap() {
         zoom:12, 
         mapTypeId:google.maps.MapTypeId.ROADMAP
     }; 
-    var marker = new google.maps.Marker({
-        position: mark1,
-        map: map
-    });
-    var map = new google.maps.Map(document.getElementById("map"),mapOptions);
+    map = new google.maps.Map(document.getElementById("map"),mapOptions);
+    
+    infowindow = new google.maps.InfoWindow();
+    var service = new google.maps.places.PlacesService(map);
+    service.nearbySearch({
+        location: city,
+        radius: 500,
+        type: ['store']
+    }, callback);
 }
+
+function callback(results, status){
+    if(status === google.maps.places.PlacesServiceStatus.OK){
+        console.log(results.length);
+        for(var i=0; i<results.length; i++){
+            createMarker(results[i]);
+            _content += "<li>"+results[i].name.toString()+"</li>";
+        }
+        _ul.innerHTML = _content;
+    }
+}
+
+function createMarker(place){
+    var placeLoc = place.geometry.location;
+    var marker = new google.maps.Marker({
+        map: map,
+        position: place.geometry.location
+    });
+    google.maps.event.addListener(marker, 'click', function(){
+        infowindow.setContent(place.name);
+        infowindow.open(map, this);
+    });
+}
+
 
 // passing values via url
 var GET = {};
