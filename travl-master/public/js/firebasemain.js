@@ -12,13 +12,63 @@ var auth = firebase.auth();
 var regPass = document.getElementById("inputPassword");
 var regEmail = document.getElementById("inputUsername");
 var regBtn = document.getElementById("btn_signup");
+var loginPass = document.getElementById("logininputPassword");
+var loginEmail = document.getElementById("logininputEmail");
+var loginBtn = document.getElementById("btn_login");
+var modalBtn = document.getElementById("loginSignup");
+var profileBtn = document.getElementById("viewProfile");
+var logoutBtn = document.getElementById("logout");
 
 regBtn.addEventListener("click", handleSignup);
+loginBtn.addEventListener("click", handleLogin);
+logoutBtn.addEventListener("click", handleLogout);
 
 function handleSignup(){
     auth.createUserWithEmailAndPassword(regEmail.value, regPass.value)
     .then(function(data){
         console.log("--signed up--")
+        alert('You are successfully registered!')
+        $("#loginModal").modal("hide")
+        modalBtn.classList.add('hidden')
+        profileBtn.classList.remove('hidden')
+        logoutBtn.classList.remove('hidden')
+        regEmail.value = ""
+        regPass.value = ""
+
+    })
+    .catch(function(err){
+        console.log(err.code)
+        alert(err.message)
+    })
+}
+
+function handleLogin(){
+    auth.signInWithEmailAndPassword(loginEmail.value, loginPass.value)
+    .then(function(data){
+        console.log("--logged in--")
+        alert('You are successfully logged in!')
+        $("#loginModal").modal("hide")
+        modalBtn.classList.add('hidden')
+        profileBtn.classList.remove('hidden')
+        logoutBtn.classList.remove('hidden')
+        loginEmail.value = ""
+        loginPass.value = ""
+
+    })
+    .catch(function(err){
+        console.log(err.code)
+        alert(err.message)
+    })
+}
+
+function handleLogout(){
+        auth.signOut().then(function() {
+        console.log("--logged out--")
+        alert('You are successfully logged out!')
+        modalBtn.classList.remove('hidden')
+        profileBtn.classList.add('hidden')
+        logoutBtn.classList.add('hidden')
+
     })
     .catch(function(err){
         console.log(err.code)
