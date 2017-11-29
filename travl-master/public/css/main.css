@@ -107,14 +107,14 @@ ul li {
 	width: 100%;
 	height: 100%;
 }
-  
+
 .dropdown {
 	margin: 0px auto;
 	position: relative;
 	width: calc(100% - 40px);
 	max-width: 400px;
 }
-  
+
 .dropdown label {
 	display: block;
 	padding: 8px 16px;
@@ -123,13 +123,13 @@ ul li {
 	text-shadow: 1px 1px 1px rgba(0, 0, 0, 0.2);
 	cursor: pointer;
 }
-  
+
 .dropdown ul {
 	list-style: none;
 	position: absolute;
 	width: 100%;
 }
-  
+
 .dropdown ul li {
 	padding: 0px 16px;
 	background: #DDD;
@@ -140,14 +140,14 @@ ul li {
 	cursor: pointer;
 	transition: height 0.1s linear 0s;
 }
-  
+
 .dropdown ul li:hover,
 .dropdown ul li.selected {
 	background: #00B4CC;
 	color: #FAFAFA;
 	text-shadow: 1px 1px 1px rgba(0, 0, 0, 0.2);
 }
-  
+
 .dropdown:hover ul li {
 	padding: 8px 16px;
 	height: 34px;
@@ -522,6 +522,17 @@ ul li {
 	 map
 -------------------------------------------------------------------------------*/
 #map{
-	height: 400px;
+	height: 600px;
 	width: 100%;
+	margin-top: 5px;
+	margin-bottom : 10px;
+}
+.coloumn{
+	height:600px;
+	overflow:scroll;
+	width:100%
+}
+
+.hidden {
+	display: none;
 }
