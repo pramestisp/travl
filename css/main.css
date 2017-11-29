@@ -534,8 +534,39 @@ ul li {
 	margin-top: 5px;
 	margin-bottom : 10px;
 }
+/*                     ekstra                     */
 .coloumn{
 	height:600px;
 	overflow:scroll;
 	width:100%
+}
+
+
+/*                   profil                    */
+.profil{
+	margin:5px auto;
+	text-align:center;
+	font-size:32px;
+}
+
+.border{
+	margin:5px auto;
+	padding-left:10px;
+	padding-right:10px;
+	padding-top : 5px;
+	padding-bottom:5px;
+	background-color: #3bc492;
+	color: #fff;
+	
+}
+.border-2{
+	padding-left:50px;
+	padding-right:10px;
+}
+
+.format-image {
+	border :20pk solid b;
+	-webkit-border-radius:20px;
+	-moz-border-radius:20px;
+	border-radius:20px
 }
