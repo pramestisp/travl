@@ -29,7 +29,11 @@ var infowindow;
 var _ul = document.getElementById("list");
 var _content = "";
 var arrayResults = [];
+var arrayResults0 = [];
+var arrayResults1 = [];
+var arrayResults2 = [];
 var userPos;
+var markTest = {lat:"",lng:""};
 
 // SET CITY'S LAT & LNG FROM PASSED VALUE
 function getVal(){
@@ -57,6 +61,16 @@ function loadMap() {
         mapTypeId:google.maps.MapTypeId.ROADMAP
     }; 
     map = new google.maps.Map(document.getElementById("map"),mapOptions);
+    
+    markTest = new google.maps.LatLng({
+        lat: -7.7695634,
+        lng: 110.3741336
+         
+    });
+    var markerTest = new google.maps.Marker({
+        map: map,
+        position: markTest
+    });
 
     // INIT INFOWINDOW
     infowindow = new google.maps.InfoWindow();
@@ -67,37 +81,58 @@ function loadMap() {
         location: city,
         radius: 20000,
         type: ['museum']
-    }, callback);
+    }, callback0);
 
     service.nearbySearch({
         location: city,
         radius: 20000,
         type: ['hindu_temple']
-    }, callback);
+    }, callback1);
 
     service.nearbySearch({
         location: city,
         radius: 20000,
         type: ['amusement_park']
-    }, callback);
+    }, callback2);
+
 }
 
 // COMPILE SEARCH RESULT
-function callback(results, status){
+function callback0(results, status){
     if(status === google.maps.places.PlacesServiceStatus.OK){
         for(var i=0; i<results.length; i++){
-            addResults(results[i]);
+            arrayResults[i] = results[i];
             createMarker(results[i]);
-            _content += "<li><a onclick='loadFunc("+i+")' class='btn btn-small wrapper '>"+results[i].name.toString()+" </a></li><li></li>";
+            _content += "<li><a onclick='loadFunc("+i+")' class='btn btn-small wrapper '>"+results[i].name.toString()+" </a></li>";  
         }
         _ul.innerHTML = _content;
     }
 }
 
-// PUSH NEW PLACE TO SINGLE ARRAY
-function addResults(res){
-    arrayResults.push(res);
+function callback1(results, status){
+    if(status === google.maps.places.PlacesServiceStatus.OK){
+        for(var i=0; i<results.length; i++){
+            arrayResults[i+results.length] = results[i];
+            createMarker(results[i]);
+            _content += "<li><a onclick='loadFunc("+(i+results.length)+")' class='btn btn-small wrapper '>"+results[i].name.toString()+" </a></li>";
+            
+        }
+        _ul.innerHTML = _content;
+    }
 }
+
+function callback2(results, status){
+    if(status === google.maps.places.PlacesServiceStatus.OK){
+        for(var i=0; i<results.length; i++){
+            arrayResults[i+(results.length*2)] = results[i];
+            createMarker(results[i]);
+            _content += "<li><a onclick='loadFunc("+(i+(results.length*2))+")' class='btn btn-small wrapper '>"+results[i].name.toString()+" </a></li>";
+            
+        }
+        _ul.innerHTML = _content;
+    }
+}
+
 
 // RE-CENTER MAP ONCLICKED PLACE
 function loadFunc(i){
@@ -105,23 +140,25 @@ function loadFunc(i){
     map.panTo(arrayResults[i].geometry.location);
 }
 
+
+
 // DETERMINE USER POSITION
-navigator.geolocation.getCurrentPosition(function(position) {
-    userPos = {
-      lat: position.coords.latitude,
-      lng: position.coords.longitude
-    };
-    locationChecker();
-});
+if(navigator.geolocation){
+    navigator.geolocation.getCurrentPosition(function(position) {
+        userPos = {
+          lat: position.coords.latitude,
+          lng: position.coords.longitude
+        };
+        console.log(userPos.lat+" "+userPos.lng);
+        locationChecker();
+    });
+} else {
+    alert("Geolocation is not supported by this browser.");
+}
 
 // CHECK IF USER'S POS EQUAL TO ONE OF PLACES - FOR CHECK IN PURPOSES
 function locationChecker(){
-    userPos = new google.maps.LatLng(userPos.lat, userPos.lng);
-    for(var i=0; i<arrayResults.length; i++){
-        if(arrayResults[i].geometry.location == userPos){
-            console.log("You're here!");
-        }
-    }
+    userPos = new google.maps.LatLng(userPos.lat, userPos.lng);  
 }
 
 // CREATE MARKER OF PLACES
@@ -136,6 +173,7 @@ function createMarker(place){
     google.maps.event.addListener(marker, 'click', function(){
         infowindow.setContent(place.name);
         infowindow.open(map, this);
+
     });
 }
 
