@@ -88,7 +88,7 @@ function callback(results, status){
         for(var i=0; i<results.length; i++){
             addResults(results[i]);
             createMarker(results[i]);
-            _content += "<a onclick='loadFunc("+i+")'><li>"+results[i].name.toString()+"</li></a>";
+            _content += "<li><a onclick='loadFunc("+i+")' class='btn btn-small wrapper '>"+results[i].name.toString()+" </a></li><li></li>";
         }
         _ul.innerHTML = _content;
     }
