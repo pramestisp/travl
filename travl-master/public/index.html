@@ -26,9 +26,12 @@
 <section class="banner" role="banner">
   <header id="header">
     <div class="header-content clearfix"> <a class="logo" href="index.html">Trav.l</a>
-      <nav class="navigation" role="navigation">
+      <nav class="navigation" role="navigation" id="navigation_bar">
         <ul class="primary-nav">
-          <li><a data-target="#loginModal" class="btn btn-large" data-toggle="modal">Login or Signup</a></li></div>
+          <li><a data-target="#loginModal" class="btn btn-large" data-toggle="modal" id="loginSignup">Login or Signup</a></li>
+          <li><a class="btn btn-large hidden" id="viewProfile" href="index.html">View Profile</a></li>
+          <li><a class="btn btn-large hidden" id="logout">Logout</a></li>
+        </div>
         </ul>
       </nav>
       <a href="#" class="nav-toggle">Menu<span></span></a> </div>
@@ -98,16 +101,8 @@
                   <label for="inputPassword">Password</label>
                   <input class="form-control" placeholder="Password" type="password" id="inputPassword">
                 </div>
-                <div class="form-group">
-                  <label for="inputName">Name</label>
-                  <input class="form-control" placeholder="Name" type="text" id="inputName">
-                </div>
-                <div class="form-group">
-                  <label for="inputNo">Phone Number</label>
-                  <input class="form-control" placeholder="Phone Number" type="text" id="inputNo">
-                </div>
                 <div>
-                  <a id="btn_signup" class="btn btn-primary">Signup</a>
+                  <a id="btn_signup" class="btn btn-primary" type="submit">Signup</a>
                 </div>
               </div>
               </form>
@@ -175,5 +170,6 @@
 <script src="js/dropdown.js"></script>
 <script src="https://www.gstatic.com/firebasejs/4.6.2/firebase.js"></script>
 <script type="text/javascript" src="js/firebasemain.js"></script>
+
 </body>
 </html>
