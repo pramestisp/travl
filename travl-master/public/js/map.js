@@ -29,11 +29,8 @@ var infowindow;
 var _ul = document.getElementById("list");
 var _content = "";
 var arrayResults = [];
-var arrayResults0 = [];
-var arrayResults1 = [];
-var arrayResults2 = [];
 var userPos;
-var markTest = {lat:"",lng:""};
+var markTest = {lat: -6.2087634, lng:106.84559899999999};
 
 // SET CITY'S LAT & LNG FROM PASSED VALUE
 function getVal(){
@@ -62,14 +59,10 @@ function loadMap() {
     }; 
     map = new google.maps.Map(document.getElementById("map"),mapOptions);
     
-    markTest = new google.maps.LatLng({
-        lat: -7.7695634,
-        lng: 110.3741336
-         
-    });
+    console.log(markTest.lat);
     var markerTest = new google.maps.Marker({
         map: map,
-        position: markTest
+        position: new google.maps.LatLng(markTest)
     });
 
     // INIT INFOWINDOW
@@ -144,7 +137,7 @@ function loadFunc(i){
 
 // DETERMINE USER POSITION
 if(navigator.geolocation){
-    navigator.geolocation.getCurrentPosition(function(position) {
+    navigator.geolocation.watchPosition(function(position) {
         userPos = {
           lat: position.coords.latitude,
           lng: position.coords.longitude
@@ -158,7 +151,33 @@ if(navigator.geolocation){
 
 // CHECK IF USER'S POS EQUAL TO ONE OF PLACES - FOR CHECK IN PURPOSES
 function locationChecker(){
-    userPos = new google.maps.LatLng(userPos.lat, userPos.lng);  
+    var isMatch;
+    console.log(userPos.lat);
+    console.log(markTest.lat);
+    for(var x=0; x<arrayResults.length; x++){
+        var deltaLat = Math.abs((arrayResults[x].geometry.location.lat)-(userPos.lat));
+        var deltaLng = Math.abs((arrayResults[x].geometry.location.lng)-(userPos.lng));
+        if((deltaLat <= 0.01)&&(deltaLng <= 0.01)){
+            isMatch = true;
+        } else{
+            isMatch = false;
+        }
+    }
+
+    // TEST LOCATION
+    var deltaTestLat = Math.abs((markTest.lat)-(userPos.lat));
+    var deltaTestLng = Math.abs((markTest.lng)-(userPos.lng));
+    if((deltaTestLat <= 0.01)&&(deltaTestLng <= 0.01)){
+        isMatch = true;
+    }
+    
+    // ACTION IF TRUE
+    if(isMatch){
+        var conBox = confirm("You are at test. Check in?");
+        if(conBox){
+            console.log("--checked in--");
+        }
+    }
 }
 
 // CREATE MARKER OF PLACES
@@ -173,7 +192,6 @@ function createMarker(place){
     google.maps.event.addListener(marker, 'click', function(){
         infowindow.setContent(place.name);
         infowindow.open(map, this);
-
     });
 }
 
