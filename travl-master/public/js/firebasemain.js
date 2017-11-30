@@ -24,17 +24,12 @@ loginBtn.addEventListener("click", handleLogin);
 logoutBtn.addEventListener("click", handleLogout);
 
 function handleSignup(){
+    auth.setPersistence(firebase.auth.Auth.Persistence.LOCAL)
     auth.createUserWithEmailAndPassword(regEmail.value, regPass.value)
     .then(function(data){
         console.log("--signed up--")
         alert('You are successfully registered!')
         $("#loginModal").modal("hide")
-        modalBtn.classList.add('hidden')
-        profileBtn.classList.remove('hidden')
-        logoutBtn.classList.remove('hidden')
-        regEmail.value = ""
-        regPass.value = ""
-
     })
     .catch(function(err){
         console.log(err.code)
@@ -43,16 +38,13 @@ function handleSignup(){
 }
 
 function handleLogin(){
+    auth.setPersistence(firebase.auth.Auth.Persistence.LOCAL)
     auth.signInWithEmailAndPassword(loginEmail.value, loginPass.value)
     .then(function(data){
         console.log("--logged in--")
         alert('You are successfully logged in!')
         $("#loginModal").modal("hide")
-        modalBtn.classList.add('hidden')
-        profileBtn.classList.remove('hidden')
-        logoutBtn.classList.remove('hidden')
-        loginEmail.value = ""
-        loginPass.value = ""
+        
 
     })
     .catch(function(err){
@@ -65,12 +57,24 @@ function handleLogout(){
         auth.signOut().then(function() {
         console.log("--logged out--")
         alert('You are successfully logged out!')
-        modalBtn.classList.remove('hidden')
-        profileBtn.classList.add('hidden')
-        logoutBtn.classList.add('hidden')
-
     })
     .catch(function(err){
         console.log(err.code)
     })
 }
+
+auth.onAuthStateChanged(function(user){
+    if(user){
+        modalBtn.classList.add('hidden')
+        profileBtn.classList.remove('hidden')
+        logoutBtn.classList.remove('hidden')
+        loginEmail.value = ""
+        loginPass.value = ""
+        regEmail.value =""
+        regPass.value =""
+    } else{
+        modalBtn.classList.remove('hidden')
+        profileBtn.classList.add('hidden')
+        logoutBtn.classList.add('hidden')
+    }
+})
